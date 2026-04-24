@@ -20,7 +20,7 @@ export function TrendChart({
 }: Props) {
   const [width, setWidth] = React.useState(0);
 
-  if (data.length < 2 || width === 0) {
+  if (data.length === 0 || width === 0) {
     return (
       <View
         style={{ height }}
@@ -51,8 +51,11 @@ export function TrendChart({
   const y0 = Math.max(0, minY - padY);
   const y1 = maxY + padY;
 
+  const singlePoint = data.length < 2;
   const toX = (x: number) =>
-    padding.left + ((x - minX) / Math.max(1, maxX - minX)) * innerW;
+    singlePoint
+      ? padding.left + innerW / 2
+      : padding.left + ((x - minX) / Math.max(1, maxX - minX)) * innerW;
   const toY = (y: number) =>
     padding.top + (1 - (y - y0) / (y1 - y0)) * innerH;
 
