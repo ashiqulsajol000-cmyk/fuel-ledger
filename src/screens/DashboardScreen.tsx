@@ -178,7 +178,7 @@ export default function DashboardScreen({ navigation }: Props) {
 
           <SectionHeader title="Efficiency trend" />
           <Card padded>
-            {series.length >= 2 ? (
+            {series.length >= 1 ? (
               <TrendChart
                 data={series.map((p) => ({ x: new Date(p.date).getTime(), y: p.kpl }))}
                 unit="KPL"
